@@ -11,11 +11,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-public class FelineTest {
 
-    @Mock
-    Feline felineAsMock;
+public class FelineTest {
 
     @Test
     public void testEatMeatFeline() throws Exception {
@@ -24,12 +21,6 @@ public class FelineTest {
         List<String> actualList = feline.eatMeat();
         assertEquals(expectedList, actualList);
 
-    }
-
-    @Test
-    public void testGetFoodWithArgFeline() throws Exception {
-        felineAsMock.getFood("Хищник");
-        Mockito.verify(felineAsMock).getFood("Хищник");
     }
 
     @Test
