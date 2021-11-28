@@ -1,22 +1,26 @@
 package com.example;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
 
-    Feline feline = new Feline();
+    @Mock
+    Feline feline;
     Lion lion;
 
     @Test
     public void testGetKittensLion() throws Exception {
         lion = new Lion("Самец", feline);
-        int expected = 1;
+        int expected = 0;
         int actual = lion.getKittens();
         assertEquals(expected, actual);
     }
@@ -24,9 +28,9 @@ public class LionTest {
     @Test
     public void testGetFoodLion() throws Exception {
         lion = new Lion("Самец", feline);
-        List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> actualFood = lion.getFood();
-        assertEquals(expectedFood, actualFood);
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), actualFood);
     }
 
     @Test(expected = Exception.class)
